@@ -1,12 +1,12 @@
 package in.naman.springtutorials.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import in.naman.springtutorials.models.Student;
+import in.naman.springtutorials.models.dtos.StudentDto;
+import in.naman.springtutorials.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
-import in.naman.springtutorials.models.Student;
-import in.naman.springtutorials.repositories.StudentRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -20,7 +20,12 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student addStudent(Student student) {
+    public Student addStudent(StudentDto input) {
+        Student student = Student.builder()
+                .name(input.getName())
+                .email(input.getEmail())
+                .dob(input.getDob())
+                .build();
         Optional<Student> check = studentRepository.findByEmail(student.getEmail());
         if (check.isPresent()) {
             throw new IllegalStateException("student already exists with this email.");

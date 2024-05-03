@@ -1,18 +1,12 @@
 package in.naman.springtutorials.controllers;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import in.naman.springtutorials.models.Student;
+import in.naman.springtutorials.models.dtos.StudentDto;
 import in.naman.springtutorials.services.StudentService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -30,7 +24,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public Student addStudent(@RequestBody Student student) {
+    public Student addStudent(@RequestBody StudentDto student) {
         log.info("Student {}", student);
         return studentService.addStudent(student);
     }
