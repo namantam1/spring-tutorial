@@ -3,6 +3,7 @@ package in.naman.springtutorials.controllers;
 import in.naman.springtutorials.models.Student;
 import in.naman.springtutorials.models.dtos.StudentDto;
 import in.naman.springtutorials.services.StudentService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public Student addStudent(@RequestBody StudentDto student) {
+    public Student addStudent(@Valid @RequestBody StudentDto student) {
         log.info("Student {}", student);
         return studentService.addStudent(student);
     }

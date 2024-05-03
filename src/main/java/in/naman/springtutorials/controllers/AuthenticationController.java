@@ -7,6 +7,7 @@ import in.naman.springtutorials.models.responses.LoginResponse;
 import in.naman.springtutorials.models.responses.RegisterResponse;
 import in.naman.springtutorials.services.AuthenticationService;
 import in.naman.springtutorials.services.JwtService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +27,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterResponse> register(@RequestBody UserRegisterDto input) {
+    public ResponseEntity<RegisterResponse> register(@Valid @RequestBody UserRegisterDto input) {
         User user = authenticationService.registerUser(input);
         RegisterResponse response = RegisterResponse.builder()
                 .id(user.getId())
@@ -36,7 +37,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody UserLoginDto input) {
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody UserLoginDto input) {
         User user = authenticationService.loginUser(input);
 
         String jwtToken = jwtService.generateToken(user);

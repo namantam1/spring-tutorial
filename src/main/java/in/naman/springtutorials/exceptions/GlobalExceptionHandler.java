@@ -2,19 +2,27 @@ package in.naman.springtutorials.exceptions;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ProblemDetail;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.http.*;
+import org.springframework.lang.NonNull;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.security.SignatureException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ProblemDetail handlerSecurityException(Exception exception) {
@@ -58,5 +66,24 @@ public class GlobalExceptionHandler {
         }
 
         return errorDetail;
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            @NonNull  MethodArgumentNotValidException ex,
+            @NonNull HttpHeaders headers,
+            @NonNull HttpStatusCode status,
+            @NonNull WebRequest request) {
+        Map<String, List<String>> body = new HashMap<>();
+
+        List<String> errors = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.toList());
+
+        body.put("errors", errors);
+
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 }
