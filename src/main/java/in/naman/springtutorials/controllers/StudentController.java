@@ -1,7 +1,7 @@
 package in.naman.springtutorials.controllers;
 
-import in.naman.springtutorials.models.Student;
 import in.naman.springtutorials.models.dtos.StudentDto;
+import in.naman.springtutorials.models.entities.Student;
 import in.naman.springtutorials.services.StudentService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

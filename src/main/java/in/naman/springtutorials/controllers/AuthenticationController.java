@@ -1,8 +1,8 @@
 package in.naman.springtutorials.controllers;
 
-import in.naman.springtutorials.models.User;
 import in.naman.springtutorials.models.dtos.UserLoginDto;
 import in.naman.springtutorials.models.dtos.UserRegisterDto;
+import in.naman.springtutorials.models.entities.User;
 import in.naman.springtutorials.models.responses.LoginResponse;
 import in.naman.springtutorials.models.responses.RegisterResponse;
 import in.naman.springtutorials.services.AuthenticationService;
@@ -29,10 +29,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<RegisterResponse> register(@Valid @RequestBody UserRegisterDto input) {
         User user = authenticationService.registerUser(input);
-        RegisterResponse response = RegisterResponse.builder()
-                .id(user.getId())
-                .email(user.getEmail())
-                .build();
+        RegisterResponse response = RegisterResponse.fromUser(user);
         return ResponseEntity.ok(response);
     }
 

@@ -1,6 +1,5 @@
 package in.naman.springtutorials.models.dtos;
 
-import in.naman.springtutorials.models.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -14,11 +13,4 @@ public class UserRegisterDto {
 
     @Length(min = 8, message = "Password must be at least 8 character long.")
     private String password;
-
-    public User toUser() {
-        return User.builder()
-                .email(email)
-                .password(password)
-                .build();
-    }
 }

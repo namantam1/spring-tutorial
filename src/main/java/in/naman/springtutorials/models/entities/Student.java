@@ -1,4 +1,4 @@
-package in.naman.springtutorials.models;
+package in.naman.springtutorials.models.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

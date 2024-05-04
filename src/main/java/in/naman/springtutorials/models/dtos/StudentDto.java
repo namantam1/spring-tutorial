@@ -1,6 +1,6 @@
 package in.naman.springtutorials.models.dtos;
 
-import in.naman.springtutorials.models.Student;
+import in.naman.springtutorials.models.entities.Student;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;

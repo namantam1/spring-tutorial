@@ -7,16 +7,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
-public class RegisterResponse {
+public class UserResponse {
     private Long id;
     private String email;
     private Role role;
 
-    public static RegisterResponse fromUser(User user) {
+    public static UserResponse fromUser(User user) {
         return builder()
                 .id(user.getId())
                 .email(user.getEmail())

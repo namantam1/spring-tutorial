@@ -1,7 +1,7 @@
 package in.naman.springtutorials.services;
 
-import in.naman.springtutorials.models.Student;
 import in.naman.springtutorials.models.dtos.StudentDto;
+import in.naman.springtutorials.models.entities.Student;
 import in.naman.springtutorials.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
