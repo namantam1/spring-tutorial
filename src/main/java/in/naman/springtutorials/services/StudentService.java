@@ -22,10 +22,6 @@ public class StudentService {
 
     public Student addStudent(StudentDto input) {
         Student student = input.toStudent();
-        Optional<Student> check = studentRepository.findByEmail(student.getEmail());
-        if (check.isPresent()) {
-            throw new IllegalStateException("student already exists with this email.");
-        }
         return studentRepository.save(student);
     }
 

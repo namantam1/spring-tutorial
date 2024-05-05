@@ -1,6 +1,5 @@
 package in.naman.springtutorials.models.dtos;
 
-import in.naman.springtutorials.models.entities.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;

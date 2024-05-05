@@ -20,7 +20,7 @@ import java.util.List;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-    private final String[] AUTH_WHITE_LIST = {
+    private static final String[] AUTH_WHITE_LIST = {
             "/auth/**",
             "/v3/api-docs/**",
             "/swagger-ui/**",

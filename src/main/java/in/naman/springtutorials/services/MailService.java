@@ -14,8 +14,6 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class MailService {
@@ -38,9 +36,6 @@ public class MailService {
 
     public void send(User user)
             throws MessagingException, UnsupportedEncodingException {
-
-        // TODO save user in the database here
-
         String confirmationUrl = "generated_confirmation_url";
         String mailFrom = environment.getProperty("spring.mail.properties.mail.smtp.from");
         String mailFromName = environment.getProperty("mail.from.name", "Identity");

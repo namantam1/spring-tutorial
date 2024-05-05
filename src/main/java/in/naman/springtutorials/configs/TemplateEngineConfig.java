@@ -14,27 +14,27 @@ import java.util.Collections;
 
 @Configuration
 public class TemplateEngineConfig implements WebMvcConfigurer {
-  private static final String EMAIL_TEMPLATE_ENCODING = "UTF-8";
+    private static final String EMAIL_TEMPLATE_ENCODING = "UTF-8";
 
-  @Bean
-  @Primary
-  public TemplateEngine emailTemplateEngine() {
-    final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-    // Resolver for HTML emails (except the editable one)
-    templateEngine.addTemplateResolver(emailTemplateResolver());
+    @Bean
+    @Primary
+    public TemplateEngine emailTemplateEngine() {
+        final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        // Resolver for HTML emails (except the editable one)
+        templateEngine.addTemplateResolver(emailTemplateResolver());
 
-    return templateEngine;
-  }
+        return templateEngine;
+    }
 
-  private ITemplateResolver emailTemplateResolver() {
-    final ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-    templateResolver.setResolvablePatterns(Collections.singleton("*"));
-    templateResolver.setPrefix("/templates/");
-    templateResolver.setSuffix(".html");
-    templateResolver.setTemplateMode(TemplateMode.HTML);
-    templateResolver.setCharacterEncoding(EMAIL_TEMPLATE_ENCODING);
-    templateResolver.setCacheable(false);
+    private ITemplateResolver emailTemplateResolver() {
+        final ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setResolvablePatterns(Collections.singleton("*"));
+        templateResolver.setPrefix("/templates/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCharacterEncoding(EMAIL_TEMPLATE_ENCODING);
+        templateResolver.setCacheable(false);
 
-    return templateResolver;
-  }
+        return templateResolver;
+    }
 }
