@@ -23,8 +23,9 @@ public class SecurityConfig {
     private final String[] AUTH_WHITE_LIST = {
             "/auth/**",
             "/v3/api-docs/**",
-            "swagger-ui/**",
-            "swagger-resources/**"
+            "/swagger-ui/**",
+            "/swagger-resources/**",
+            "/h2-console/**"
     };
 
     private final AuthenticationProvider authenticationProvider;

@@ -66,6 +66,7 @@ public class DataSeeder {
     @Order(1)
     public void createSuperAdmin(ContextRefreshedEvent ignored) {
         User user = User.builder()
+                .name("Super Admin")
                 .email("super.admin@gmail.com")
                 .password(passwordEncoder.encode("password"))
                 .build();

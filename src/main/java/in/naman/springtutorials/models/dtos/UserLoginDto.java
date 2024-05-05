@@ -18,11 +18,4 @@ public class UserLoginDto {
 
     @Length(min = 8, message = "Password must be at least 8 character long.")
     private String password;
-
-    public User toUser() {
-        return User.builder()
-                .email(email)
-                .password(password)
-                .build();
-    }
 }
